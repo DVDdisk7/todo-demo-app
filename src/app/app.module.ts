@@ -2,15 +2,22 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { AppComponent } from './components/app.component';
+import { TodoComponent } from './components/todo.component';
+
+// Importeer de NgxsModule en bijbehorende modules
+import { NgxsModule } from '@ngxs/store';
+import { TodoState } from './state/todo.state';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TodoComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgxsModule.forRoot([TodoState])
   ],
   providers: [],
   bootstrap: [AppComponent]
