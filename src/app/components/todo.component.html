@@ -1,7 +1,18 @@
 <div>
-    <p>Todo</p>
-    <input type="text" #todoInput (keyup.enter)="addTodo(todoInput.value); todoInput.value = ''">
-    <button (click)="addTodo(todoInput.value)">Add</button>
+
+    <div class="card flex justify-content-center">
+        <div class="flex flex-column gap-2">
+            <label for="username">Nieuw todo-item:</label>
+            <input 
+                pInputText
+                id="username" 
+                #todoInput
+                (keyup.enter)="addTodo(todoInput.value); todoInput.value = ''"
+                aria-describedby="username-help" />
+                <p-button label="Submit" icon="pi pi-check" iconPos="right" (click)="addTodo(todoInput.value)"/>
+        </div>
+    </div>
+
     <ul>
         <li *ngFor="let item of todos$ | async ; let i = index" (click)="toggleTodo(item.id)">
             @if (item.completed) {
@@ -9,7 +20,7 @@
             } @else {
                 {{ item.title }}&nbsp;
             }
-            <button (click)="removeTodo(item.id)">Remove</button>
+            <p-button label="Remove" icon="pi pi-trash" iconPos="left" (click)="removeTodo(item.id)"></p-button>
         </li>
     </ul>
 </div>
