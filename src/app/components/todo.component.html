@@ -3,8 +3,12 @@
     <input type="text" #todoInput (keyup.enter)="addTodo(todoInput.value); todoInput.value = ''">
     <button (click)="addTodo(todoInput.value)">Add</button>
     <ul>
-        <li *ngFor="let item of todos$ | async ; let i = index">
-            {{ item.title }}
+        <li *ngFor="let item of todos$ | async ; let i = index" (click)="toggleTodo(item.id)">
+            @if (item.completed) {
+                <del>{{ item.title }}</del>&nbsp;
+            } @else {
+                {{ item.title }}&nbsp;
+            }
             <button (click)="removeTodo(item.id)">Remove</button>
         </li>
     </ul>
