@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 // Components
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
+import { HeaderComponent } from './core/components/header.component';
 
 // Router
 import { routes } from './app.routes';
@@ -15,8 +15,8 @@ import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsRouterPluginModule } from '@ngxs/router-plugin';
 
 // Importeer de state
-import { TodoState } from './todo/state/todo.state';
-import { BreadcrumbComponent } from "./breadcrumb/breadcrumb.component";
+import { TodoState } from './home/state/todo.state';
+import { BreadcrumbComponent } from "./core/components/breadcrumb.component";
 
 @NgModule({
   declarations: [

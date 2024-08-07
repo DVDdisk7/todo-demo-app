@@ -3,23 +3,19 @@ import { Routes } from "@angular/router";
 export const routes: Routes = [
     {
         path: "",
-        loadComponent: () => import('./todo/components/todo.component').then(m => m.TodoComponent)
+        loadComponent: () => import('./home/pages/home.page').then(m => m.HomePage)
     },
     {
         path: "home",
-        loadComponent: () => import('./todo/components/todo.component').then(m => m.TodoComponent)
-    },
-    {
-        path: "home/subpage",
-        loadComponent: () => import('./about/about.component').then(m => m.AboutComponent)
+        loadComponent: () => import('./home/pages/home.page').then(m => m.HomePage)
     },
     {
         path: "about",
-        loadComponent: () => import('./about/about.component').then(m => m.AboutComponent)
+        loadComponent: () => import('./about/pages/about.page').then(m => m.AboutPage)
     },
     {
         path: "about/help",
-        loadComponent: () => import('./help/help.component').then(m => m.HelpComponent)
+        loadComponent: () => import('./help/pages/help.page').then(m => m.HelpPage)
     },
     {
         // Redirect crap to home

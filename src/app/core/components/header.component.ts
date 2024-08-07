@@ -25,28 +25,25 @@ export class HeaderComponent implements OnInit {
             {
                 label: 'Home',
                 icon: 'pi pi-home',
-                command: () => this.navigate('')
+                routerLink: '/',
             },
             {
                 label: 'About',
                 icon: 'pi pi-info-circle',
-                command: () => this.navigate('about'),
+                routerLink: '/about',
                 items: [
                     {
                         label: 'Help',
                         icon: 'pi pi-question-circle',
-                        command: () => this.navigate('about/help')
+                        routerLink: '/about/help',
                     },
                 ]
             },
             {
                 label: 'Contact',
-                icon: 'pi pi-envelope'
+                icon: 'pi pi-envelope',
+                url: 'mailto:d.jongeneel@depotsoftware.com',
             }
         ];
-    }
-
-    navigate(route: string) {
-        this.store.dispatch(new Navigate([route]));
     }
 }

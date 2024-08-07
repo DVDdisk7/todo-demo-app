@@ -23,7 +23,26 @@ export class DeleteTodo {
 @State<TodoStateModel>({
     name: "todos",
     defaults: {
-        todos: []
+        todos: [
+            {
+                id: 1,
+                title: "Todo 1",
+                date: new Date(),
+                completed: false
+            },
+            {
+                id: 2,
+                title: "Todo 2",
+                date: new Date(),
+                completed: false
+            },
+            {
+                id: 3,
+                title: "Todo 3",
+                date: new Date(),
+                completed: true
+            }
+        ]
     }
 })
 @Injectable()
@@ -47,6 +66,7 @@ export class TodoState {
                 {
                     id: state.todos.length + 1,
                     title: action.title,
+                    date: new Date(),
                     completed: false
                 }
             ]
