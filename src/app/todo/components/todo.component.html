@@ -1,0 +1,25 @@
+<div class="my-4 mx-2">
+    <div class="card flex flex-column gap-2">
+        <label>New todo-item:</label>
+        <div class="flex gap-2">
+            <input pInputText id="username" [(ngModel)]="todoInputValue" placeholder="Add a new todo"
+                (keyup.enter)="addTodo(todoInputValue)" aria-describedby="username-help" />
+            <p-button label="Submit" icon="pi pi-check" iconPos="right" (click)="addTodo(todoInputValue)" />
+        </div>
+    </div>
+
+    <div class="bg-yellow-200 border-round mt-3 p-2">
+        <p *ngIf="(todos$ | async)?.length === 0">Add a new item to start</p>
+        <ul>
+            <li *ngFor="let item of todos$ | async ; let i = index" (click)="toggleTodo(item.id)" class="my-3">
+                @if (item.completed) {
+                <del>{{ item.title }}</del>&nbsp;
+                } @else {
+                {{ item.title }}&nbsp;
+                }
+                <p-button size="small" label="Remove" icon="pi pi-trash" iconPos="left"
+                    (click)="removeTodo(item.id)"></p-button>
+            </li>
+        </ul>
+    </div>
+</div>

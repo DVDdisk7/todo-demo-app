@@ -17,13 +17,18 @@ import { ButtonModule } from 'primeng/button';
 })
 export class TodoComponent {
     todos$: Observable<TodoItemModel[]>;
+    todoInputValue: string = '';
+
 
     constructor(private store: Store) {
         this.todos$ = this.store.select(TodoState.getTodos);
     }
 
     addTodo(title: string) {
-        this.store.dispatch(new AddTodo(title));
+        if (title.trim()) {
+            this.store.dispatch(new AddTodo(title));
+            this.todoInputValue = '';
+        }
     }
 
     toggleTodo(id: number) {
