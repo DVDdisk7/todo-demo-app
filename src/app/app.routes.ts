@@ -11,14 +11,19 @@ export const routes: Routes = [
     },
     {
         path: "home/subpage",
-        loadComponent: () => import('./about/about.component').then(m => m.AboutComponent),
+        loadComponent: () => import('./about/about.component').then(m => m.AboutComponent)
     },
     {
         path: "about",
-        loadComponent: () => import('./about/about.component').then(m => m.AboutComponent),
+        loadComponent: () => import('./about/about.component').then(m => m.AboutComponent)
     },
     {
         path: "about/help",
         loadComponent: () => import('./help/help.component').then(m => m.HelpComponent)
+    },
+    {
+        // Redirect crap to home
+        path: "**",
+        redirectTo: ""
     }
 ];

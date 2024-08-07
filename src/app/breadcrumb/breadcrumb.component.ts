@@ -10,29 +10,6 @@ import { MenuItem } from 'primeng/api';
     imports: [BreadcrumbModule]
 })
 
-/* export class BreadcrumbComponent implements OnInit {
-
-    items: MenuItem[] | undefined;
-    home: MenuItem | undefined;
-    
-    ngOnInit() {
-        console.log(window.location.pathname)
-
-        this.items = [
-            { label: 'Categories' },
-            { label: 'Sports' },
-            { label: 'Football' },
-            { label: 'Countries' },
-            { label: 'Spain' },
-            { label: 'F.C. Barcelona' },
-            { label: 'Lionel Messi' }
-        ];
-
-        this.home = { icon: 'pi pi-home', routerLink: '/' };
-    }
-
-} */
-
 export class BreadcrumbComponent {
     items: MenuItem[] | undefined;
     home: MenuItem | undefined = { icon: 'pi pi-home', routerLink: '/' };
