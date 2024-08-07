@@ -7,13 +7,13 @@ import { AddTodo, DeleteTodo, TodoState, ToggleTodo } from '../state/todo.state'
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
+import { BreadcrumbComponent } from '../../breadcrumb/breadcrumb.component';
 
 @Component({
     selector: 'app-todo',
     templateUrl: './todo.component.html',
-    styleUrl: './todo.component.css',
     standalone: true,
-    imports: [CommonModule, InputTextModule, FormsModule, ButtonModule]
+    imports: [CommonModule, InputTextModule, FormsModule, ButtonModule, BreadcrumbComponent]
 })
 export class TodoComponent {
     todos$: Observable<TodoItemModel[]>;

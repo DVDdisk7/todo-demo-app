@@ -1,19 +1,22 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
-
 // Components
 import { AppComponent } from './app.component';
-import { TodoComponent } from './todo/components/todo.component';
 import { HeaderComponent } from './header/header.component';
+
+// Router
+import { routes } from './app.routes';
+import { RouterModule } from '@angular/router';
 
 // Importeer de NgxsModule en bijbehorende modules
 import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { NgxsRouterPluginModule } from '@ngxs/router-plugin';
 
 // Importeer de state
 import { TodoState } from './todo/state/todo.state';
+import { BreadcrumbComponent } from "./breadcrumb/breadcrumb.component";
 
 @NgModule({
   declarations: [
@@ -21,12 +24,13 @@ import { TodoState } from './todo/state/todo.state';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     NgxsModule.forRoot([TodoState]),
-    NgxsReduxDevtoolsPluginModule.forRoot(),
+    NgxsRouterPluginModule.forRoot(),
     HeaderComponent,
-    TodoComponent
-  ],
+    RouterModule.forRoot(routes),
+    NgxsReduxDevtoolsPluginModule.forRoot(),
+    BreadcrumbComponent
+],
   providers: [],
   bootstrap: [AppComponent]
 })
