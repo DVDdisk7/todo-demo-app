@@ -7,7 +7,6 @@ import { InputTextModule } from 'primeng/inputtext';
 import { CommonModule } from '@angular/common';
 import { RippleModule } from 'primeng/ripple';
 import { Store } from '@ngxs/store';
-import { Navigate } from '@ngxs/router-plugin';
 
 @Component({
     selector: 'app-header',

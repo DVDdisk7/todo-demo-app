@@ -10,7 +10,6 @@ import { ButtonModule } from 'primeng/button';
 import { CheckboxModule } from 'primeng/checkbox';
 import { MessageModule } from 'primeng/message';
 import { ToolbarModule } from 'primeng/toolbar';
-import { CategoryModel } from '../models/category.model';
 
 @Component({
     selector: 'app-todo',

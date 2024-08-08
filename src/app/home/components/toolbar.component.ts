@@ -1,7 +1,6 @@
 import { Component, computed, OnInit, Signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Store } from '@ngxs/store';
-import { Observable, take } from 'rxjs';
 import { AddTodo, TodoState, SelectCategory } from '../state/todo.state';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
