@@ -1,15 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { TodoItemModel } from '../models/todoItem.model';
-import { AddTodo, DeleteTodo, TodoState, ToggleTodo } from '../state/todo.state';
+import { DeleteTodo, TodoState, ToggleTodo} from '../state/todo.state';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { CheckboxModule } from 'primeng/checkbox';
 import { MessageModule } from 'primeng/message';
 import { ToolbarModule } from 'primeng/toolbar';
+import { CategoryModel } from '../models/category.model';
 
 @Component({
     selector: 'app-todo',
@@ -18,12 +19,11 @@ import { ToolbarModule } from 'primeng/toolbar';
     imports: [CommonModule, InputTextModule, FormsModule, ButtonModule, CheckboxModule, MessageModule, ToolbarModule]
 })
 export class TodoComponent {
-    todos$: Observable<TodoItemModel[]>;
+    todos$: Observable<TodoItemModel[]> | undefined;
     todoInputValue: string = '';
 
-
     constructor(private store: Store) {
-        this.todos$ = this.store.select(TodoState.getTodos);
+        this.todos$ = this.store.select(TodoState.getSelectedTodos);
     }
 
     toggleTodo(id: number) {

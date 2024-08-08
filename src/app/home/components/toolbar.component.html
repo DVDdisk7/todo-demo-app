@@ -6,6 +6,9 @@
             <p-button icon="pi pi-plus" (click)="addTodo(todoInputValue)" />
         </span>
     </div>
+    <div class="p-toolbar-group-end">
+        <p-dropdown [options]="categories" [(ngModel)]="selectedCategory" optionLabel="name" placeholder="Filter" (onChange)="changeSelectedCategory()"/>
+    </div>
     <!--
     <div class="p-toolbar-group-end">
         <p-button icon="pi pi-plus" class="mr-2" />

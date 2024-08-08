@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, computed, OnInit, Signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
-import { TodoItemModel } from '../models/todoItem.model';
-import { AddTodo, TodoState } from '../state/todo.state';
+import { Observable, take } from 'rxjs';
+import { AddTodo, TodoState, SelectCategory } from '../state/todo.state';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { ToolbarModule } from 'primeng/toolbar';
 import { DropdownModule } from 'primeng/dropdown';
+import { CategoryModel } from '../models/category.model';
 
 @Component({
     selector: 'app-toolbar',
@@ -17,13 +17,24 @@ import { DropdownModule } from 'primeng/dropdown';
     imports: [CommonModule, InputTextModule, FormsModule, ButtonModule, ToolbarModule, DropdownModule]
 })
 export class ToolbarComponent {
-    todos$: Observable<TodoItemModel[]>;
     todoInputValue: string = '';
-    selectedFilter: string = 'all';
-    categories: any[] | undefined;
+
+    selectedCategory: CategoryModel = { name: 'All', selected: true };
+    categories: CategoryModel[] = [];
+
 
     constructor(private store: Store) {
-        this.todos$ = this.store.select(TodoState.getTodos);
+        this.store.select(TodoState.getCategories).subscribe(categories => {
+            this.categories = categories;
+        });
+
+        this.store.select(TodoState.getSelectedCategory).subscribe(category => {
+            this.selectedCategory = category || { name: 'All', selected: true };
+        });
+    }
+
+    changeSelectedCategory() {
+        this.store.dispatch(new SelectCategory(this.selectedCategory.name));	
     }
 
     addTodo(title: string) {

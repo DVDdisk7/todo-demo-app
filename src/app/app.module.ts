@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Components
 import { AppComponent } from './app.component';
@@ -24,6 +25,7 @@ import { BreadcrumbComponent } from "./core/components/breadcrumb.component";
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     NgxsModule.forRoot([TodoState]),
     NgxsRouterPluginModule.forRoot(),
     HeaderComponent,

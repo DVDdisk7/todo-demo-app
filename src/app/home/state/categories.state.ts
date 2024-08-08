@@ -1,11 +1,8 @@
 import { Injectable } from "@angular/core";
-import { TodoItemModel } from "../models/todoItem.model";
 import { State, Action, StateContext, Selector, select } from "@ngxs/store";
 import { CategoryModel } from "../models/category.model";
-import { timeout } from "rxjs";
 
-export interface TodoStateModel {
-    todos: TodoItemModel[];
+export interface CategoryStateModel {
     categories: CategoryModel[]; 
 }
 
@@ -27,16 +24,10 @@ export class DeleteTodo {
     constructor(public id: number) {}
 }
 
-// Actie om een categorie te selecteren
-export class SelectCategory {
-    static readonly type = "[Todo] Select Category";
-    constructor(public name: string) {}
-}
-
-@State<TodoStateModel>({
-    name: "todos",
+@State<CategoryStateModel>({
+    name: "categories",
     defaults: {
-        todos: [
+        categories: [
             {
                 id: 1,
                 title: "Todo 1",
@@ -53,27 +44,13 @@ export class SelectCategory {
                 id: 3,
                 title: "Todo 3",
                 date: new Date(),
-                completed: false
-            }   
-        ],
-        categories: [
-            {
-                name: "All",
-                selected: true
-            },
-            {
-                name: "Completed",
-                selected: false
-            },
-            {
-                name: "Incomplete",
-                selected: false
+                completed: true
             }
         ]
     }
 })
 @Injectable()
-export class TodoState {
+export class CategoriesState {
     @Selector()
     static getTodos(state: TodoStateModel) {
         return state.todos;
@@ -87,32 +64,6 @@ export class TodoState {
     @Selector()
     static getIncompleteTodos(state: TodoStateModel) {
         return state.todos.filter(todo => !todo.completed);
-    }
-
-    @Selector()
-    static getCategories(state: TodoStateModel) {
-        return state.categories;
-    }
-
-    @Selector()
-    static getSelectedCategory(state: TodoStateModel) {
-        return state.categories.find(category => category.selected);
-    }
-
-    @Selector()
-    static getSelectedTodos(state: TodoStateModel) {
-        const selectedCategory = state.categories.find(category => category.selected);
-        if (selectedCategory) {
-            switch (selectedCategory.name) {
-                case "Completed":
-                    return state.todos.filter(todo => todo.completed);
-                case "Incomplete":
-                    return state.todos.filter(todo => !todo.completed);
-                default:
-                    return state.todos;
-            }
-        }
-        return state.todos;
     }
 
     // Actie om een todo toe te voegen
@@ -132,8 +83,7 @@ export class TodoState {
                     date: new Date(),
                     completed: false
                 }
-            ],
-            categories: [...state.categories]
+            ]
         });
     }
 
@@ -148,8 +98,7 @@ export class TodoState {
         ctx.setState({
             todos: state.todos.map(todo =>
                 todo.id === action.id ? { ...todo, completed: !todo.completed } : todo
-            ),
-            categories: [...state.categories]
+            )
         });
     }
 
@@ -162,22 +111,7 @@ export class TodoState {
         }
         const state = ctx.getState();
         ctx.setState({
-            todos: state.todos.filter(todo => todo.id !== action.id),
-            categories: [...state.categories]
-        });
-    }
-
-    // Actie om een categorie te selecteren
-    // State wordt opgevraagd, zet de geselecteerde categorie op true en de rest op false
-    @Action(SelectCategory)
-    selectCategory(ctx: StateContext<TodoStateModel>, action: SelectCategory) {
-        const state = ctx.getState();
-        ctx.setState({
-            todos: [...state.todos],
-            categories: state.categories.map(category => ({
-                ...category,
-                selected: category.name === action.name
-            }))
+            todos: state.todos.filter(todo => todo.id !== action.id)
         });
     }
 }
