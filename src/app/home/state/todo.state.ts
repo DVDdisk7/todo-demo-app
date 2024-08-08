@@ -2,7 +2,6 @@ import { Injectable } from "@angular/core";
 import { TodoItemModel } from "../models/todoItem.model";
 import { State, Action, StateContext, Selector, select } from "@ngxs/store";
 import { CategoryModel } from "../models/category.model";
-import { timeout } from "rxjs";
 
 export interface TodoStateModel {
     todos: TodoItemModel[];
