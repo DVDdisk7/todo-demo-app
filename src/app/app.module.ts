@@ -14,6 +14,7 @@ import { RouterModule } from '@angular/router';
 import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsRouterPluginModule } from '@ngxs/router-plugin';
+import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 
 // Importeer de state
 import { TodoState } from './home/state/todo.state';
@@ -28,10 +29,11 @@ import { BreadcrumbComponent } from "./core/components/breadcrumb.component";
     BrowserAnimationsModule,
     NgxsModule.forRoot([TodoState]),
     NgxsRouterPluginModule.forRoot(),
+    NgxsStoragePluginModule.forRoot({ keys: '*'}),
     HeaderComponent,
+    BreadcrumbComponent,
     RouterModule.forRoot(routes),
     NgxsReduxDevtoolsPluginModule.forRoot(),
-    BreadcrumbComponent
 ],
   providers: [],
   bootstrap: [AppComponent]

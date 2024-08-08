@@ -4,11 +4,11 @@
             text="Nothing to see here!" />
         <div *ngFor="let item of todos$ | async"
             class="flex justify-content-between align-items-center gap-2 card border-round border-300 border-1 px-3 py-1 my-2">
-            <div class="flex gap-2">
-                <p-checkbox binary="true" [(ngModel)]="item.completed" />
+            <div class="flex gap-2 w-full" (click)="toggleTodo(item.id)" >
+                <p-checkbox binary="true" [(ngModel)]="item.completed" disabled />
 
                 @if (item.completed) {
-                <p (click)="toggleTodo(item.id)"><del>{{ item.title }}</del></p>
+                <p><del>{{ item.title }}</del></p>
                 }
                 @else {
                 <p (click)="toggleTodo(item.id)">{{ item.title }}</p>
