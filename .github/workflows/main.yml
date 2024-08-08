@@ -19,6 +19,8 @@ jobs:
       run: npm run build
     - name: Deploy to gh pages
       run: |
+        git config --global user.email "d.jongeneel@depotsoftware.com"
+        git config --global user.name "Deployment Bot"
         npx angular-cli-ghpages --dir=dist/todo-demo-app --no-silent
       env:
         CI: true
