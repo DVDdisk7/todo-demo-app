@@ -17,11 +17,10 @@ export class BreadcrumbComponent {
 
     constructor(private store: Store) {
         this.store.select(RouterState.state).subscribe((state: any) => {
-            console.log(state);
             
-            // Find all the firstChilds until the last one
             let breadcrumbPath = "";
             let urlPath = "";
+
             let currentChild = state?.root.firstChild;
             while (currentChild) {
                 console.log(currentChild);
@@ -29,7 +28,6 @@ export class BreadcrumbComponent {
                 breadcrumbPath += '/' + currentChild.data.breadcrumb;
                 currentChild = currentChild.firstChild;
             }
-            console.log(urlPath);
 
             this.items = breadcrumbPath?.split('/').filter(part => part != "").map((part: string, index: number) => {
                 return {

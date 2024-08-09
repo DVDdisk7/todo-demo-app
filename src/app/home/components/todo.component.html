@@ -8,10 +8,10 @@
                 <p-checkbox binary="true" [(ngModel)]="item.completed" disabled />
 
                 @if (item.completed) {
-                <p class="non-selectable"><del>{{ item.title }}</del></p>
+                <p class="non-selectable text-overflow-ellipsis"><del>{{ item.title }}</del></p>
                 }
                 @else {
-                <p class="non-selectable">{{ item.title }}</p>
+                <p class="non-selectable text-overflow-ellipsis">{{ item.title }}</p>
                 }
             </div>
             <p-button size="small" icon="pi pi-trash" (click)="removeTodo(item.id)"></p-button>

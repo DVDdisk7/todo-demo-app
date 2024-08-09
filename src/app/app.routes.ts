@@ -64,8 +64,9 @@ export const routes: Routes = [
         }
     },
     {
-        // Redirect crap to home
+        // Redirect crap to 404
+        title: "404 Not Found",
         path: "**",
-        redirectTo: ""
+        loadComponent: () => import('./error/pages/404.page').then(m => m.Error404Page),
     }
 ];
