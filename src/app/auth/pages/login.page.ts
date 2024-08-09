@@ -5,18 +5,22 @@ import { Store } from '@ngxs/store';
 import { Login } from '../state/auth.state';
 import { UserModel } from '../models/user.model';
 import { Router } from '@angular/router';
+import { MessagesModule } from 'primeng/messages';
+import { Message } from 'primeng/api';
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
     selector: 'app-login',
     templateUrl: './login.page.html',
     standalone: true,
-    imports: [FormsModule, CommonModule]
+    imports: [FormsModule, CommonModule, MessagesModule, ButtonModule, InputTextModule]
 })
 export class LoginPage {
     username: string = "";
     password: string = "";
     credentials: UserModel = { username: "", password: "" };
-    errorMessage: string | null = null;
+    errorMessage: Message[] = [];
 
     constructor(private store: Store, private router: Router) { }
 
@@ -30,7 +34,7 @@ export class LoginPage {
             },
             error: (err) => {
                 console.error('login failed', err);
-                this.errorMessage = 'Invalid username or password';
+                this.errorMessage = [{ severity: 'error', summary: 'Login failed', detail: 'Invalid username or password' }];   
             }
         });
     }
