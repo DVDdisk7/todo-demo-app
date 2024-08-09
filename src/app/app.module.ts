@@ -19,6 +19,11 @@ import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 // Importeer de state
 import { TodoState } from './home/state/todo.state';
 import { BreadcrumbComponent } from "./core/components/breadcrumb.component";
+import { AuthState } from './auth/state/auth.state';
+
+import { AuthService } from './auth/services/auth.service';
+import { HttpClient, HttpClientModule, HttpHandler } from '@angular/common/http';  
+import { AuthGuard } from './auth/state/auth.guard';
 
 @NgModule({
   declarations: [
@@ -26,16 +31,17 @@ import { BreadcrumbComponent } from "./core/components/breadcrumb.component";
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     BrowserAnimationsModule,
-    NgxsModule.forRoot([TodoState]),
+    NgxsModule.forRoot([AuthState, TodoState]),
     NgxsRouterPluginModule.forRoot(),
-    NgxsStoragePluginModule.forRoot({ keys: '*'}),
+    NgxsStoragePluginModule.forRoot({ keys: ['auth.token', 'todo.todos'] }),
     HeaderComponent,
     BreadcrumbComponent,
     RouterModule.forRoot(routes),
     NgxsReduxDevtoolsPluginModule.forRoot(),
 ],
-  providers: [],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

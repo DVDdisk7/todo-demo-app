@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { TodoItemModel } from "../models/todoItem.model";
-import { State, Action, StateContext, Selector, select } from "@ngxs/store";
+import { State, Action, StateContext, Selector } from "@ngxs/store";
 import { CategoryModel } from "../models/category.model";
 
 export interface TodoStateModel {
@@ -73,6 +73,7 @@ export class SelectCategory {
 })
 @Injectable()
 export class TodoState {
+    
     @Selector()
     static getTodos(state: TodoStateModel) {
         return state.todos;

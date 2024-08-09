@@ -21,7 +21,7 @@ export class BreadcrumbComponent {
             let breadcrumbPath = "";
             let urlPath = "";
 
-            let currentChild = state?.root.firstChild;
+            let currentChild = state?.root.firstChild.firstChild; // Because the first child is MAIN-route and the second is the actual page
             while (currentChild) {
                 console.log(currentChild);
                 urlPath += '/' + currentChild.url.join('/');

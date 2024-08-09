@@ -1,0 +1,22 @@
+<div class="card center">
+    <h1>Login</h1>
+    <p class="text-xl">Please enter your credentials to login.</p>
+
+    <form (ngSubmit)="onSubmit()">
+        <div class="form-control input">
+            <label for="username">Username</label>
+            <input type="text" [(ngModel)]="username" id="username" name="username" placeholder="Enter your username" />
+        </div>
+
+        <div class="form-control">
+            <label for="password">Password</label>
+            <input type="password" [(ngModel)]="password" id="password" name="password" placeholder="Enter your password" />
+        </div>
+
+        <div class="form-control">
+            <button type="submit" class="btn">Login</button>
+        </div>
+
+       <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+    </form>
+</div>

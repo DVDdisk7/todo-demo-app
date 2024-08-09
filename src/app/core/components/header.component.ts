@@ -7,17 +7,20 @@ import { InputTextModule } from 'primeng/inputtext';
 import { CommonModule } from '@angular/common';
 import { RippleModule } from 'primeng/ripple';
 import { Store } from '@ngxs/store';
+import { Logout } from '../../auth/state/auth.state';
+import { Button } from 'primeng/button';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
     standalone: true,
-    imports: [MenubarModule, BadgeModule, AvatarModule, InputTextModule, RippleModule, CommonModule]
+    imports: [MenubarModule, BadgeModule, AvatarModule, InputTextModule, RippleModule, CommonModule, Button]
 })
 export class HeaderComponent implements OnInit {
     items: MenuItem[] | undefined;
 
-    constructor(private store: Store) {}
+    constructor(private store: Store, private router: Router) {}
     
     ngOnInit() {
         this.items = [
@@ -57,4 +60,11 @@ export class HeaderComponent implements OnInit {
             }
         ];
     }
+
+    logout() {
+        console.log('logging out');
+        this.store.dispatch(new Logout());
+        this.router.navigate(['/login']);
+    }
+
 }
