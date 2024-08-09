@@ -36,6 +36,18 @@ export class HeaderComponent implements OnInit {
                         icon: 'pi pi-question-circle',
                         routerLink: '/about/help',
                     },
+                    {
+                        label: 'Children',
+                        icon: 'pi pi-users',
+                        routerLink: '/about/children',
+                        items: [
+                            {
+                                label: 'Grandchildren',
+                                icon: 'pi pi-user-plus',
+                                routerLink: '/about/children/grand-children',
+                            }
+                        ]
+                    },
                 ]
             },
             {
